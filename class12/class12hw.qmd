@@ -1,0 +1,40 @@
+---
+title: "class12hw"
+author: "Whitney Tran (PID:A16781338)"
+format: pdf
+---
+
+## CLASS12 HW
+
+Section 4: Population Scale Analysis.
+One sample is obviously not enought to know what is happening in a population. You are interested in assessing genetic differences on a population scale. 
+
+## Q.13
+
+```{r}
+expr <- read.table("rs8067378_ENSG00000172057.6.txt")
+
+table(expr$geno)
+
+```
+
+The sample size for A/A is 108, for A/G is 233, and G/G is 121.
+
+```{r}
+aa <- expr[expr$geno == "AA"]
+
+table(aa$exp)
+
+```
+
+
+## Q.14
+
+```{r}
+library(ggplot2)
+
+ggplot(expr) +aes(geno, exp, fill=geno) + geom_boxplot(notch=TRUE)
+```
+
+Yes, the SNP affects the expression of ORMDL3. Having G/G appears to be associated with a reduced expression of the gene whereas having A/A is associated with higher expression of ORMDL3. Being heterozygous (A/G) is between these two expression levels.
+
